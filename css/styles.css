@@ -290,7 +290,7 @@ a.close-overlay.hidden { display: none; }
 a.expand { display: block; position: absolute; z-index: 100; text-align: center; color: #fff; font-weight: 600; font-size: 14px; text-transform: uppercase; line-height: 30px; }
 .overlay-effect .img i { font-size: 30px; }
 .overlay-effect .overlay { bottom: 0; left: 0; right: 0; width: 100%; height: 100%; opacity: 0; }
-.overlay-effect .overlay a.expand { left: 0; right: 0; bottom: 47%; margin: 0 auto -30px auto; }
+.overlay-effect .overlay a.expand { left: 0; right: 0; bottom: 53%; margin: 0 auto -30px auto; }
 .overlay-effect .img.hover .overlay { height: 100%; opacity: 1; }
 .img img { width: -webkit-calc(100% + 40px) !important; width: calc(100% + 40px) !important; -webkit-transition: opacity 0.35s, -webkit-transform 0.35s; transition: opacity 0.35s, transform 0.35s; -moz-transition: opacity 0.35s, -moz-transform 0.35s; -o-transition: opacity 0.35s, -o-transform 0.35s; -webkit-transform: translate3d(-40px, 0, 0); transform: translate3d(-40px, 0, 0); -ms-transform: translate3d(-40px, 0, 0); }
 .img:hover img { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); -ms-transform: translate3d(-40px, 0, 0); }
