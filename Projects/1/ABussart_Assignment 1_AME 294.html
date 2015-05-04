@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <style>
+        body { 
+            background-color:#8aa59a; 
+            background-image:url(http://i.imgur.com/lghtQOH.png); 
+        }
+        .box { 
+            position:fixed;
+            top:50%;
+            left:50%;
+            width: 300px; 
+            height: 200px; 
+            border: 10px solid #F2F2F2;
+            font-family: 'Slabo 27px';
+            text-align:center;
+            color: #000000; 
+            background-color: #FFFFFF; 
+            transform:translate(-50%,-50%);
+        }
+        #box-1 { 
+            z-index:2; 
+            border-color:#FFF;
+            font-size:30px;
+            line-height:200px;
+            color:#FFF; 
+            background-color:#cadcd8;
+            cursor:pointer;
+        }
+        #box-2 {
+            padding:45px 20px;
+            border-color:#FFF;
+            font-size:22px;
+            text-transform:uppercase; 
+            color:#FFF;
+            background-color: #bbbe94; 
+            box-sizing:border-box;
+        }
+
+        #box-2 span { 
+            display:block;
+            padding: 5px 10px 0px 10px;
+            border-bottom: 1px solid #FFF;
+            font: 26px 'Satisfy';
+            text-transform:none;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        function box1Clicked() {
+            $("#box-1").stop().fadeOut('slow');
+        }
+
+        function box2Clicked() {
+            $("#box-1").stop().fadeIn('slow');
+        }
+    </script>
+</head>
+
+<body>
+<div onclick="box1Clicked()" id="box-1" class="box">Click Me!</div>
+<div onclick="box2Clicked()" id="box-2" class="box">
+    Hello, World!
+    <span>Alisha Bussart</span>
+</div>
+</body>
+</html>

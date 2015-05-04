@@ -1,0 +1,89 @@
+* { box-sizing: border-box; }
+
+body { margin:0px; font-family: 'Lato'; }
+h1,h2,h3,h4,h5,h6, p { margin: 0px; }
+hr { border: 0; border-top: 1px solid #eee; }
+a { font-family: 'Lato'; color:#3D557C; text-decoration: none; }
+
+header { width:100%; background-color:#824C71; background-image: url(./bg.png); background-attachment: fixed; color: #FFF; text-align:center; line-height: 75px; font-family: 'Slabo 27px'; z-index: 999; }
+select { display:block; position:fixed; top:30px; left:15px; z-index: 1000; }
+
+#list{
+	height: auto;
+    background-color: #403F4C;
+	display: inline-block;
+    
+    padding:10px;
+}
+#list hr { border-color: #2C2B3C; clear:both; }
+#list .list-item:hover, #list .selected { position:relative; /*background-color:#48475e;*/ }
+#list .selected:after,
+#list .list-item:hover:after {
+    right: -30px;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    z-index:100;
+    border-left-color: #403F4C;
+    border-width: 15px 10px;
+    margin-top: -15px;
+}
+#list .list-item { width:100%; position:relative; color:#FFF; padding-bottom:5px; }
+#list .list-item .image { float:left; padding-right:15px; }
+#details{
+	height: 90%;
+    background-color: #FFF;
+	display: inline-block;
+	vertical-align: top;
+    overflow:auto;
+}
+#details p { font-size:13px; }
+#details .image { float: left; padding-right:15px; }
+#details .desc {
+    clear: both;
+    padding-top:10px;
+    
+}
+
+.small a { font-size: 14px; }
+.small #list{
+    width: 100%;
+}
+.small #list .list-item { padding:10px; }
+.small #list .list-item .image { width:165px; padding-right:20px; }
+.small #list .price { font-size: 13px; }
+.small #details {
+    width: 100%;
+    height:95%;
+    padding:20px;
+    display:none;
+}
+.small #details .image { width:250px; padding-right:25px; }
+.small #details .back-button { position:fixed; top: 12px; left:12px; z-index: 1000; background-color:#3D557C; color:#FFF; border-radius: 5px; padding:10px; font-size: 1.5em; }
+.small #details .download, .small #details .share { display:block; }
+
+
+.big header { position:fixed; height: 75px; }
+.big #list {
+	width: 30%;
+    margin-top: 75px;
+}
+.big .list-item { height:60px; }
+.big #list .list-item img { width:75px; }
+.big #list .price { font-size: 14px; }
+.big #details {
+    width: 70%;
+    padding:20px;
+    font-size: 14px;
+    position:fixed;
+    margin-top: 75px;
+}
+.big #details .desc { 
+    text-align:justify;
+}
+.big #details .place-links { position:absolute; top:20px; right:20px; }
+.big #details .download, .big #details .share { display:block; }

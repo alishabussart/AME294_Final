@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>
+Top 25 Paid iOS apps
+</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<style>
+    body { background-color:#46484f; padding:30px; font-family: 'Lato'; }
+    h1 { font:40px 'Lato'; color:#FFF; text-transform:uppercase; text-align:center; padding:10px 0px; }
+    #dynamicContent { width:80%; min-width:840px; margin:0px auto; background-color:#FFF; box-shadow: 0px 0px 5px #000; padding:20px; border-radius: 30px; box-sizing:border-box; }
+    #dynamicContent a { color:#878787; text-decoration:none; }
+    .list-item { height:140px; overflow:hidden; padding:20px; background-color:#f6f6f6; margin:10px; border-radius:20px; box-sizing:border-box; position:relative; -webkit-transition: all .5s ease-out; -moz-transition: all .5s ease-out; -o-transition: all .5s ease-out; transition: all .5s ease-out; }
+    .list-item:hover { height:350px; -webkit-transition: all .5s ease-out; -moz-transition: all .5s ease-out; -o-transition: all .5s ease-out; transition: all .5s ease-out; }
+    .title { font-weight:bold; }
+    .image { position:absolute; top:20px; left:20px; }
+    .artist { font-size:13px; }
+    .desc {  background-color:#f6f6f6; font-size:12px; max-height:200px; overflow:auto; padding:0px 10px; margin:35px 0px 0px 0px; }
+    .release { font-size:12px; }
+    .rights { font-size:11px; }
+    .shift { padding-left:115px; }
+    .get-app { position:absolute; top:20px; right:20px; text-align: right; }
+</style>
+    
+<script>
+
+function getXMLHTTPRequest()
+{
+var request;
+// Lets try using ActiveX to instantiate the XMLHttpRequest object
+try{
+request = new ActiveXObject("Microsoft.XMLHTTP");
+}catch(ex1){
+try{
+request = new ActiveXObject("Msxml2.XMLHTTP");
+}catch(ex2){
+request = null;
+}
+}
+
+// If the previous didn't work, lets check if the browser natively support XMLHttpRequest 
+if(!request && typeof XMLHttpRequest != "undefined"){
+//The browser does, so lets instantiate the object
+request = new XMLHttpRequest();
+}
+
+return request;
+}
+
+function loadRSS(url, callback)
+{
+var aXMLHttpRequest = getXMLHTTPRequest();
+var allData;
+
+if (aXMLHttpRequest)
+{
+aXMLHttpRequest.open("GET", url, true);
+
+aXMLHttpRequest.onreadystatechange = function (aEvt) {
+if(aXMLHttpRequest.readyState == 4){
+allData = aXMLHttpRequest.responseText;
+callback(allData)
+}
+};
+
+//Lets fire off the request
+aXMLHttpRequest.send(null);
+}
+else
+{
+//Oh no, the XMLHttpRequest object couldn't be instantiated.
+alert("A problem occurred instantiating the XMLHttpRequest object.");
+}
+}
+
+function load()
+{
+loadRSS("./ex.rss",formatRSS);
+}
+    
+function formatRSS(data) {
+    var rssFeed = JSON.parse(data).feed.entry; 
+    var output = "";
+    for(var i = 0; i < rssFeed.length; i++){
+    
+        output = output + "<div class='list-item'>"; // opening div tag
+        output = output + "<div class='title shift'>" + rssFeed[i]["im:name"].label + "</div>"; // App title
+        output = output + "<div class='artist shift'>By " + "<a 'more' href=" + rssFeed[i]["im:artist"].attributes.href + ">" + rssFeed[i]["im:artist"].label + "</a>" + "</div>"; // author
+        output = output + "<div class='category shift'>" + rssFeed[i].category.attributes.label + "</div>"; // genre/category
+        output = output + "<div class='release shift'>" + rssFeed[i]["im:releaseDate"].attributes.label + "</div>"; // date released
+        output = output + "<div class='rights shift'>" + rssFeed[i].rights.label + "</div>"; // rights holder
+        output = output + "<img class='image' src=" + rssFeed[i]["im:image"][2].label + ">"; // icon/image
+        output = output + "<div class='desc'>" + rssFeed[i].summary.label + "</div>"; // App summary/description
+        output = output + "<div class='get-app'>"; // for placing pricing and itunes link
+        output = output + "<div class='price'>" + rssFeed[i]["im:price"].label + " USD" + "</div>"; // price
+        output = output + "<a class='download' href=" + rssFeed[i].link.attributes.href + ">" + "View on iTunes" + "</a>"; // link to purchase
+        output = output + "</div>";
+        output = output + "</div>"; // closing div tag
+}
+
+    var contents = document.getElementById('dynamicContent').innerHTML = output; // places output into vew variable
+    var replace = contents.replace(/\n/gi, "<br>"); // replaces \n in rss file with line breaks
+    document.getElementById("dynamicContent").innerHTML = replace; // puts new output into container div
+    
+}
+    
+</script>
+
+</head>
+
+<body onload='load()'>
+<h1>Top 25 Paid Apps on the iTunes App Store</h1>
+<div id='dynamicContent'></div>
+</body>
+
+</html>
